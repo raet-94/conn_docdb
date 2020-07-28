@@ -1,0 +1,12 @@
+
+
+
+tunel
+ssh -i "ubuntu.pem" -L 27017:docdb-2020-07-28-00-51-15.cluster-cnulc0ybvaaq.us-west-2.docdb.amazonaws.com:27017 ubuntu@ec2-52-32-211-196.us-west-2.compute.amazonaws.com -N 
+
+
+conexion a mongo 
+mongo --sslAllowInvalidHostnames --ssl --sslCAFile rds-combined-ca-bundle.pem --username gestalabs --password Rataloka123_!
+
+ssh a caja
+ssh -i "ubuntu.pem" ubuntu@ec2-52-32-211-196.us-west-2.compute.amazonaws.com
