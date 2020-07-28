@@ -1,12 +1,12 @@
-# conn_docdb
-A connection to a docdb using an ec2 ssh tunnel 
+# Connection to a DocumentDB using an EC2 for a ssh tunnel 
+
 
 
 
 To connect to a DocumentDB database outside from de VPC in which is created  , you need to create an EC2 instance in the same vpc this will be used to create a ssh tunnel to the DocumentDB.   
 
 
-## -ssh to EC2
+## -Ssh to EC2
 First you need to  connect to the  EC2 instance and download the .pem for your DocumentDB instance for this you will need to type 
 
 ssh -i "<Ec2.pem>" user@<PublicDNS(IPv4)>
@@ -17,19 +17,19 @@ wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 
 
 
-## -tunnel
+## -Tunnel
 
 After that on the machine where you want to create you need to create an ssh tunnel 
 
 ssh -i "<Ec2.pem>" -L 27017: <DocDB Cluster endpoint>:27017 user@<PublicDNS(IPv4)> -N 
 
 
-## -connection to  mongo 
+## -Connection to  mongo 
 Using the mongo shell the connection will be the next one 
 
 mongo --sslAllowInvalidHostnames --ssl --sslCAFile <Docdb.pem> --username <db_user> --password <db_user_password>
 
-## Long ssh time connection 
+## -Long ssh time connection 
 If you want to create a ssh connetion that live longer you cann do that changing the ssh command  
 
 ssh -i "<Ec2.pem>" -L 27017: <DocDB Cluster endpoint>:27017 user@<PublicDNS(IPv4)> -N  -o ServerAliveInterval=N -o ServerAliveCountMax=M
